@@ -46,14 +46,18 @@ set_ifndef(TENSORRT_ROOT ../)
 set_ifndef(ONNX_INC_DIR ${TENSORRT_ROOT}/parsers/)
 set_ifndef(PYBIND11_DIR ${EXT_PATH}/pybind11/)
 
+set(ROOT ../../)
+set(PY_INCLUDE ${ROOT}/mambaforge/envs/humble_env/include/python3.10)
+set(PY_CONFIG_INCLUDE ${ROOT}/mambaforge/envs/humble_env/include/python3.10)
+
 # Source Files
 file(GLOB_RECURSE SOURCE_FILES src/*.cpp)
 
 # Find headers
-find_path(PY_INCLUDE Python.h HINTS ${EXT_PATH}/python${PYTHON_MAJOR_VERSION}.${PYTHON_MINOR_VERSION} PATH_SUFFIXES include)
+find_path(PY_INCLUDE Python.h)
 
 set(PY_TARGET_DIR ${TARGET}-linux-gnu)
-find_path(PY_CONFIG_INCLUDE pyconfig.h HINTS ${PY_INCLUDE} PATH_SUFFIXES ${PY_TARGET_DIR}/python${PYTHON_MAJOR_VERSION}.${PYTHON_MINOR_VERSION})
+find_path(PY_CONFIG_INCLUDE pyconfig.h)
 
 # -------- GLOBAL COMPILE OPTIONS --------
 
